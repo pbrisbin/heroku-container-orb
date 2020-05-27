@@ -1,0 +1,28 @@
+description: |
+  Build and push to the Heroku registry
+
+parameters:
+  app-name:
+    description: Heroku app name.
+    type: string
+  process-types:
+    description: Space-separated list of process types. Default is web.
+    type: string
+    default: web
+  recursive:
+    description: Build with --recursive. If set, process-types is ignored.
+    type: boolean
+    default: false
+
+steps:
+  - when:
+      condition: <<parameters.recursive>>
+      steps:
+        - run: heroku container:push --recursive --app <<parameters.app-name>>
+  - unless:
+      condition: <<parameters.recursive>>
+      steps:
+        - run: |
+            for process_type in <<parameters.process-types>>; do
+              heroku container:push "$process_type" --app <<parameters.app-name>>
+            done

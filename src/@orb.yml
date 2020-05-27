@@ -1,0 +1,10 @@
+version: 2.1
+
+description: |
+  Release Docker containers to Heroku.
+
+display:
+  source_url: https://github.com/pbrisbin/heroku-container-orb
+
+orbs:
+  heroku: circleci/heroku@1.0.1

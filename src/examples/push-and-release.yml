@@ -1,0 +1,27 @@
+description: |
+  Build, push, and release with custom Dockerfile.
+
+usage:
+  version: 2.1
+
+  orbs:
+    heroku-container: pbrisbin/heroku-container@x.y
+
+  workflows:
+    build_and_release:
+      jobs:
+        - heroku-container/push-and-release:
+            app-name: some-app-name
+            process-types: web worker
+            recursive: true
+            before-build:
+              - run: |
+                  cat >Dockerfile.web <<EOM
+                  FROM ...
+                  CMD ...
+                  EOM
+
+                  cat >Dockerfile.worker <<EOM
+                  FROM ...
+                  CMD ...
+                  EOM

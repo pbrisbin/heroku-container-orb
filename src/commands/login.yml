@@ -1,0 +1,8 @@
+description: |
+  Login to the heroku container registry.
+
+  NOTE: Environment variables are not configurable, you must set HEROKU_EMAIL,
+  and HEROKU_API_KEY
+
+steps:
+  - run: heroku container:login
