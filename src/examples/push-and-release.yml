@@ -16,12 +16,12 @@ usage:
             recursive: true
             before-build:
               - run: |
-                  cat >Dockerfile.web <<EOM
+                  cat >Dockerfile.web \<<EOM
                   FROM ...
                   CMD ...
                   EOM
 
-                  cat >Dockerfile.worker <<EOM
+                  cat >Dockerfile.worker \<<EOM
                   FROM ...
                   CMD ...
                   EOM
